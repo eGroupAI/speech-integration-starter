@@ -1,0 +1,13 @@
+<svg width="1200" height="560" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="quickstart preview">
+  <rect width="1200" height="560" fill="#071D1B"/>
+  <rect x="40" y="36" width="1120" height="488" rx="12" fill="#0B2A27" stroke="#1E5A54"/>
+  <text x="72" y="92" fill="#D9FFF8" font-size="28" font-family="Consolas, monospace">Quickstart Preview</text>
+  <text x="72" y="138" fill="#95F7E6" font-size="22" font-family="Consolas, monospace">$ whisper-run transcribe --input out/demo.wav --lang zh --provider mock --output out/demo.json</text>
+  <text x="72" y="176" fill="#95F7E6" font-size="22" font-family="Consolas, monospace">$ whisper-run validate --input out/demo.json</text>
+  <rect x="72" y="216" width="1056" height="268" rx="8" fill="#07211E" stroke="#1B4D47"/>
+  <text x="92" y="258" fill="#CCFFF6" font-size="20" font-family="Consolas, monospace">{</text>
+  <text x="92" y="292" fill="#CCFFF6" font-size="20" font-family="Consolas, monospace">  "language": "zh",</text>
+  <text x="92" y="326" fill="#CCFFF6" font-size="20" font-family="Consolas, monospace">  "segments": [ { "start": 0.0, "end": 1.0, "text": "[zh] demo" } ]</text>
+  <text x="92" y="360" fill="#CCFFF6" font-size="20" font-family="Consolas, monospace">}</text>
+  <text x="92" y="408" fill="#8EDFD1" font-size="18" font-family="Consolas, monospace">Result: validation passed</text>
+</svg>
