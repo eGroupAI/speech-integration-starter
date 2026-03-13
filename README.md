@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/banner.svg" width="100%" alt="speech-integration-starter"/>
+<img src="./assets/banner.svg?v=20260313-2" width="100%" alt="speech-integration-starter"/>
 
 <br/>
 
