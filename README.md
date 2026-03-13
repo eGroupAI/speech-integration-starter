@@ -6,48 +6,41 @@
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/github/license/eGroupAI/speech-integration-starter?style=for-the-badge)](./LICENSE)
 
-> 讓你快速完成語音轉寫接入與標準化輸出。  
-> **重點是快速引用與可重現。**
+> 把 `.wav` 送進去，拿回含 `start` / `end` / `text` 的 JSON 轉寫結果。
+> Provider 可替換，CPU CI 也能跑完整流程。
 
 ---
 
-## 一分鐘看懂價值
-
-- 統一轉寫輸出格式（`language + segments`）
-- Provider 可替換，整合成本低
-- CPU-only CI 也能完整驗證流程
-
-![Quickstart Preview](./assets/quickstart-preview.svg)
-
----
-
-## 30 秒快速引用
+## 安裝
 
 ```bash
 python -m venv .venv
-. .venv/bin/activate  # Windows: .venv\Scripts\activate
+# macOS / Linux
+. .venv/bin/activate
+# Windows
+.venv\Scripts\activate
+
 pip install -e .[dev]
+```
+
+---
+
+## 執行
+
+```bash
+# 產生示範音檔（合成靜音，不含真實語料）
 python scripts/generate_demo_wav.py
+
+# 執行轉寫
 whisper-run transcribe --input ./out/demo.wav --lang zh --provider mock --output ./out/demo.json
+
+# 驗證輸出格式
 whisper-run validate --input ./out/demo.json
 ```
 
 ---
 
-## 你可以直接用在
-
-- 語音轉文字原型驗證
-- 會議內容前處理
-- 多 provider 接入的基線層
-
----
-
-## 輸入 / 輸出示例
-
-```text
-input:  out/demo.wav
-output: out/demo.json
-```
+## 輸出長這樣
 
 ```json
 {
@@ -60,33 +53,53 @@ output: out/demo.json
 
 ---
 
-## Python API
+## 如果你要在 Python 裡用
 
 ```python
 from whisper_starter.pipeline import transcribe_file
 from whisper_starter.providers.mock_provider import MockProvider
 
-result = transcribe_file(
-    audio_path="out/demo.wav",
-    language="zh",
-    provider=MockProvider(),
-)
+result = transcribe_file(audio_path="out/demo.wav", language="zh", provider=MockProvider())
 print(result)
 ```
 
 ---
 
-## 安全邊界
+## 換成自己的推論後端
 
-本 repo 不包含真實語料、業務決策規則與內部流程細節。  
-詳見 `docs/threat-model.md`。
+`MockProvider` 用於測試。換成實際推論後端時，繼承 `WhisperProvider` 協定即可：
+
+```python
+from whisper_starter.providers.faster_whisper_provider import FasterWhisperProvider
+
+provider = FasterWhisperProvider(model_name="small")
+result = transcribe_file(audio_path="audio.wav", language="zh", provider=provider)
+```
+
+> `faster-whisper` 需自行安裝：`pip install faster-whisper`
 
 ---
 
-## 開發與測試
+## 適合這些情境
+
+- 需要讓轉寫後端可替換，而不是寫死在流程裡
+- 想在 CPU CI 跑完整轉寫測試，不依賴 GPU 環境
+- 需要一個有測試覆蓋的轉寫輸出基線
+
+---
+
+## 不包含
+
+- 真實語料與客戶詞庫
+- 模型選型策略、後處理規則、任何 Prompt 資產
+
+詳見 [`docs/threat-model.md`](./docs/threat-model.md)。
+
+---
+
+## 開發
 
 ```bash
-python scripts/keyword_guard.py
 pytest -q
 ```
 
@@ -94,4 +107,4 @@ pytest -q
 
 ## 授權
 
-MIT License，詳見 `LICENSE`。
+MIT License，詳見 [`LICENSE`](./LICENSE)。
