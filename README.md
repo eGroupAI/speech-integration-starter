@@ -107,4 +107,20 @@ pytest -q
 
 ## 授權
 
-MIT License，詳見 [`LICENSE`](./LICENSE)。
+本專案採 [MIT License](./LICENSE) 授權。
+
+版權所有 © 2026 [eGroupAI 益群健康資訊](https://www.egroupai.com/zh-TW)
+
+---
+
+## 維護者
+
+本 repo 由 **eGroupAI 益群健康資訊** 維護，作為公司開源貢獻的一部分。
+
+| 項目 | 資訊 |
+| --- | --- |
+| 官網 | [https://www.egroupai.com/zh-TW](https://www.egroupai.com/zh-TW) |
+| 聯絡信箱 | [service@egroupai.com](mailto:service@egroupai.com) |
+| GitHub 組織 | [github.com/eGroupAI](https://github.com/eGroupAI) |
+
+如有問題或建議，歡迎透過 [GitHub Issues](../../issues) 或上述信箱與我們聯絡。
