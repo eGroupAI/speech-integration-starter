@@ -1,14 +1,24 @@
-# speech-integration-starter
+<div align="center">
 
-![Banner](./assets/banner.svg)
+<img src="./assets/banner.svg" width="100%" alt="speech-integration-starter"/>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/eGroupAI/speech-integration-starter/ci.yml?branch=main&style=for-the-badge)](../../actions)
-[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge)](./LICENSE)
+<br/>
+
+[![CI](https://img.shields.io/github/actions/workflow/status/eGroupAI/speech-integration-starter/ci.yml?branch=main&style=for-the-badge&label=CI)](../../actions)&nbsp;
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)&nbsp;
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge)](./LICENSE)&nbsp;
 [![Free & Open Source](https://img.shields.io/badge/Free%20%26%20Open%20Source-%E2%9C%93-brightgreen?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-> 把 `.wav` 送進去，拿回含 `start` / `end` / `text` 的 JSON 轉寫結果。
-> Provider 可替換，CPU CI 也能跑完整流程。
+<br/>
+
+**把 `.wav` 送進去，拿回含 `start` / `end` / `text` 的 JSON 轉寫結果。
+Provider 可替換，CPU CI 也能跑完整流程。**
+
+<br/>
+
+[安裝](#安裝) &nbsp;·&nbsp; [執行](#執行) &nbsp;·&nbsp; [輸出格式](#輸出格式) &nbsp;·&nbsp; [換 Provider](#換成自己的推論後端) &nbsp;·&nbsp; [授權](#授權)
+
+</div>
 
 ---
 
@@ -16,11 +26,7 @@
 
 ```bash
 python -m venv .venv
-# macOS / Linux
-. .venv/bin/activate
-# Windows
-.venv\Scripts\activate
-
+. .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -e .[dev]
 ```
 
@@ -41,7 +47,7 @@ whisper-run validate --input ./out/demo.json
 
 ---
 
-## 輸出長這樣
+## 輸出格式
 
 ```json
 {
@@ -54,7 +60,7 @@ whisper-run validate --input ./out/demo.json
 
 ---
 
-## 如果你要在 Python 裡用
+## Python API
 
 ```python
 from whisper_starter.pipeline import transcribe_file
@@ -68,7 +74,7 @@ print(result)
 
 ## 換成自己的推論後端
 
-`MockProvider` 用於測試。換成實際推論後端時，繼承 `WhisperProvider` 協定即可：
+`MockProvider` 用於測試，不需要 GPU。換成實際推論後端時，繼承 `WhisperProvider` 協定即可：
 
 ```python
 from whisper_starter.providers.faster_whisper_provider import FasterWhisperProvider
